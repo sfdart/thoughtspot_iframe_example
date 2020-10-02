@@ -7,11 +7,37 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="HUD SFDART ThoughtSpot site"
     />
+    <script type=”text/javascript” src=”https://hud-east-public.s3.amazonaws.com/api/api.min.js”></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <script type=”text/javascript”>
+     thoughtspotHost = https://dev.hudsfdart.com
+     function setUpThoughtSpotAPI() {
+         window.thoughtspot.initialize(
+             function(isUserAuthenticatedToThoughtSpot) {
+                    if (isUserAuthenticatedToThoughtSpot) {
+                        // load an embedded ThoughtSpot visualization or
+                        // make a ThoughtSpot data API call
+                    } else {
+                        // the current user into your system is not authenticated
+                        // into your ThoughtSpot instance, case in any other way suitable
+                        // to your application logic. Do NOT call setUpThoughtSpotAPI again
+                        // here as that could create an infinite cycle.
+                    }
+             },
+             function() {
+                 // the user got logged out from ThoughtSpot, possibly because
+                 // their session with ThoughtSpot expired, you can call setUpThoughtSpotAPI()
+                 // again to re-authenticate the user or handle this case in any other way
+                 // suitable to your application logic.
+             },
+             thoughtspotHost
+         );
+     }
+ </script>
     <title>ThoughtSpot - iframe Embed Example</title>
   </head>
   <body>
